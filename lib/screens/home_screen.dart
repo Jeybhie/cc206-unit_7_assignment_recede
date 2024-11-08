@@ -15,7 +15,6 @@ class _HomeScreenState extends State<HomeScreen> {
       Uri.parse("https://www.demonslayer-api.com/api/v1/characters?page=1");
   final ExpandedTileController _tileController = ExpandedTileController();
 
-  // Fetch characters as a list of `Characters` objects
   Future<List<Characters>> fetchCharacters() async {
     final response = await http.get(url);
 
@@ -23,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
       final Map<String, dynamic> data = jsonDecode(response.body);
       final List<dynamic> content = data['content'] ?? [];
 
-      // Map JSON list to List<Characters>
       return content.map((json) => Characters.fromJson(json)).toList();
     } else {
       throw Exception('Failed to load data');
